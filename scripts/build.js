@@ -48,7 +48,9 @@ for (const name of iconNames) {
 sprite += `</defs>\n</svg>\n`;
 fs.writeFileSync(path.join(DIST_DIR, 'sprite.svg'), sprite);
 
-// 2. Raw SVGs
+// 2. Raw SVGs — clean first so renamed/deleted files don't linger
+const iconsDistDir = path.join(DIST_DIR, 'icons');
+if (fs.existsSync(iconsDistDir)) fs.rmSync(iconsDistDir, { recursive: true });
 for (const size of SIZES) {
   const src = path.join(ICONS_DIR, String(size));
   const dest = path.join(DIST_DIR, 'icons', String(size));
