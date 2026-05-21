@@ -104,7 +104,7 @@ npm install
 ```ts
 import { iconNames, type IconName, type IconSize } from 'substrate-design-system';
 
-// iconNames — string[] of all 61 icon names
+// iconNames — string[] of all 63 icon names
 // IconName  — union type: "archive" | "dashboard" | "download" | ...
 // IconSize  — 16 | 20 | 24 | 32
 ```
@@ -185,18 +185,18 @@ archive            archive-cabinet    archive-invoice    archive-quote
 checkmark-filled   checkmark-outline  close-lg           close-sm
 copy-document      copy-item          copy-link          dashboard
 delete             design             down               download
-edit               file-ai            file-eps           file-gen
-file-jpg           file-pdf           file-png           file-svg
-file-xls           filter             invoice            kanban
-left               left-arrow         left-arrow-1       link
-lock-calc          menu-h             menu-v             new
-options            pause-outline      pending            print
-print-invoice      print-quote        print-work-order   production
-quote              right              right-arrow        right-arrow-1
-rush               rush-1             search             settings
-suppliers          trash              unlock-calc        up
-update-invoice     upload             user               view
-work-order
+edit               edit-pen           file-ai            file-eps
+file-gen           file-jpg           file-pdf           file-png
+file-svg           file-xls           filter             invoice
+invoice-alt        kanban             left               left-arrow
+left-arrow-1       link               lock-calc          menu-h
+menu-v             new                options            pause-outline
+pending            print              print-invoice      print-quote
+print-work-order   production         quote              right
+right-arrow        right-arrow-1      rush               rush-1
+search             settings           suppliers          trash
+unlock-calc        up                 update-invoice     upload
+user               view               work-order
 ```
 
 ---
