@@ -1,6 +1,6 @@
 # substrate-design-system
 
-Design system for Substrate — 61 icons, with outputs for Phoenix/LiveView and Vite/Node apps.
+Design system for Substrate — icons, with outputs for Phoenix/LiveView and Vite/Node apps.
 
 Icons are sourced from Figma, exported as SVGs, and built into a Phoenix HEEx component and an npm-compatible package via a single build script. Both apps consume this repo as a git dependency — no registry required.
 
