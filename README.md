@@ -1,2 +1,2 @@
-# substrate-icons
-Custom Icons for Substrate App &amp; Marketing Site
+# substrate-design-system
+Design System & Icon Set for Substrate App &amp; Marketing Site
