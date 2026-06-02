@@ -2,12 +2,13 @@
 
 const fs = require('fs');
 const path = require('path');
+const { optimize } = require('svgo');
 
 const ROOT = path.join(__dirname, '..');
 const ICONS_DIR = path.join(ROOT, 'icons');
 const DIST_DIR = path.join(ROOT, 'dist');
 const LIB_DIR = path.join(ROOT, 'lib', 'substrate_design_system');
-const SIZES = [16, 20, 24, 32];
+const SIZES = [16, 20, 24, 32, 48];
 
 function extractSvg(raw, size) {
   const viewBox = (raw.match(/viewBox="([^"]+)"/) || [])[1] || `0 0 ${size} ${size}`;
@@ -27,7 +28,8 @@ for (const size of SIZES) {
   for (const file of fs.readdirSync(dir).filter(f => f.endsWith('.svg'))) {
     const name = path.basename(file, '.svg');
     const raw = fs.readFileSync(path.join(dir, file), 'utf8');
-    const { viewBox, inner } = extractSvg(raw, size);
+    const optimized = optimize(raw, { path: path.join(dir, file) }).data;
+    const { viewBox, inner } = extractSvg(optimized, size);
     (icons[name] ??= {})[size] = { viewBox, inner };
   }
 }
@@ -63,9 +65,9 @@ for (const size of SIZES) {
 // 3. TypeScript / JS
 const nameUnion = iconNames.length ? iconNames.map(n => `"${n}"`).join(' | ') : 'never';
 fs.writeFileSync(path.join(DIST_DIR, 'index.d.ts'),
-  `export type IconName = ${nameUnion};\nexport type IconSize = 16 | 20 | 24 | 32;\n`);
+  `export type IconName = ${nameUnion};\nexport type IconSize = 16 | 20 | 24 | 32 | 48;\n`);
 fs.writeFileSync(path.join(DIST_DIR, 'index.js'),
-  `export const iconNames = ${JSON.stringify(iconNames)};\nexport const iconSizes = [16, 20, 24, 32];\n`);
+  `export const iconNames = ${JSON.stringify(iconNames)};\nexport const iconSizes = [16, 20, 24, 32, 48];\n`);
 
 // 4. Phoenix HEEx component
 fs.mkdirSync(LIB_DIR, { recursive: true });

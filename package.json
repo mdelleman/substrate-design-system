@@ -22,5 +22,8 @@
     "lib",
     "scripts",
     "mix.exs"
-  ]
+  ],
+  "devDependencies": {
+    "svgo": "^4.0.1"
+  }
 }
