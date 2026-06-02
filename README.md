@@ -65,7 +65,7 @@ import SubstrateDesignSystem.Icons
 | Prop | Type | Default | Notes |
 |------|------|---------|-------|
 | `name` | `string` | required | Kebab-case icon name (see list below) |
-| `size` | `integer` | `24` | Must match an exported size — currently only `24` |
+| `size` | `integer` | `24` | Supported: `16` `20` `24` `32` `48` |
 | `class` | `string` | `nil` | Tailwind or CSS classes |
 | rest | global attrs | — | Any other HTML attribute (`aria-*`, `data-*`, etc.) |
 
@@ -104,9 +104,9 @@ npm install
 ```ts
 import { iconNames, type IconName, type IconSize } from 'substrate-design-system';
 
-// iconNames — string[] of all 63 icon names
+// iconNames — string[] of all 91 icon names
 // IconName  — union type: "archive" | "dashboard" | "download" | ...
-// IconSize  — 16 | 20 | 24 | 32
+// IconSize  — 16 | 20 | 24 | 32 | 48
 ```
 
 ### 3. SVG sprite
@@ -153,9 +153,9 @@ npm update substrate-design-system
 
 ## Updating icons (when Figma changes)
 
-1. Open the [Substrate Figma file](https://www.figma.com/design/FE4Dz4MjP5wSKOh4TyQMWO/Substrate?node-id=216-1220) and export updated icons as SVG (24×24)
-2. Drop the `.svg` files into `icons/24/` — filenames must be kebab-case (e.g. `my-icon.svg`)
-3. Run the build script:
+1. Open the [Substrate Figma file](https://www.figma.com/design/FE4Dz4MjP5wSKOh4TyQMWO/Substrate?node-id=216-1220) and export updated icons as SVG
+2. Drop the `.svg` files into the matching size folder — `icons/24/`, `icons/32/`, `icons/48/`, etc. Filenames must be kebab-case (e.g. `my-icon.svg`)
+3. Run the build script (SVGs are automatically optimised via SVGO):
    ```sh
    node scripts/build.js
    ```
@@ -181,22 +181,29 @@ npm update substrate-design-system
 ## Available icons
 
 ```
-archive            archive-cabinet    archive-invoice    archive-quote
-checkmark-filled   checkmark-outline  close-lg           close-sm
-copy-document      copy-item          copy-link          dashboard
-delete             design             down               download
-edit               edit-pen           file-ai            file-eps
-file-gen           file-jpg           file-pdf           file-png
-file-svg           file-xls           filter             invoice
-invoice-alt        kanban             left               left-arrow
-left-arrow-1       link               lock-calc          menu-h
-menu-v             new                options            pause-outline
-pending            print              print-invoice      print-quote
-print-work-order   production         quote              right
-right-arrow        right-arrow-1      rush               rush-1
-search             settings           suppliers          trash
-unlock-calc        up                 update-invoice     upload
-user               view               work-order
+archive              archive-cabinet      archive-invoice      archive-quote
+arrow-path           arrow-top-right-on-square                 arrow-uturn-left     bell
+bell-slash           building-office-2    chart-bar            check
+checkmark-filled     checkmark-outline    close-lg             close-sm
+copy-document        copy-item            copy-link            currency-dollar
+dashboard            delete               design-24x24         design-32x32
+design-48x48         down                 download             due-soon
+edit                 edit-pen             exclamation-circle   file-ai
+file-eps             file-gen             file-jpg             file-pdf
+file-png             file-svg             file-xls             filter
+has-comments         history-order        invoice              invoice-alt
+kanban               left                 left-arrow           left-arrow-1
+link                 list                 lock                 lock-calc
+menu-h               menu-v               new                  options
+palette              pause-outline        pending              print
+print-invoice        print-quote          print-work-order     production
+production-24x24     production-32x32     production-48x48     production-complete
+quote-24x24          quote-32x32          quote-48x48          quote-sent
+right                right-arrow          right-arrow-1        rush
+rush-1               search               send-production      settings
+shield-check         suppliers            trash                unlock-calc
+up                   update-invoice       upload               user
+view                 work-order           wrench-screwdriver
 ```
 
 ---
@@ -205,12 +212,16 @@ user               view               work-order
 
 ```
 icons/
-  24/               ← source SVGs exported from Figma (one size, 24×24)
+  16/               ← source SVGs at 16×16
+  20/               ← source SVGs at 20×20
+  24/               ← source SVGs at 24×24
+  32/               ← source SVGs at 32×32
+  48/               ← source SVGs at 48×48
 scripts/
-  build.js          ← reads icons/, writes dist/ and lib/
+  build.js          ← reads icons/, optimises via SVGO, writes dist/ and lib/
 dist/
   sprite.svg        ← SVG sprite (all icons as <symbol> elements)
-  icons/24/         ← raw SVG copies
+  icons/            ← raw SVG copies, organised by size
   index.js          ← JS exports (iconNames array)
   index.d.ts        ← TypeScript types (IconName union, IconSize)
 lib/
