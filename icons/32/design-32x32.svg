@@ -1,0 +1,21 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="2.2002" y="5" width="27.6001" height="18.4" rx="2" stroke="#27292A" stroke-width="1.2"/>
+<line x1="2.2002" y1="19.12" x2="29.8002" y2="19.12" stroke="#27292A" stroke-width="1.2"/>
+<line x1="4.64004" y1="21.1441" x2="7.12005" y2="21.1441" stroke="#27292A" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="6.47988" y1="27.4" x2="25.5199" y2="27.4" stroke="#27292A" stroke-width="1.2" stroke-linecap="round"/>
+<path d="M10.9399 27.54V26.16H21.06V27.54" stroke="#27292A" stroke-width="1.2"/>
+<line x1="4.64004" y1="7.16001" x2="8.04005" y2="7.16001" stroke="#27292A" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="4.64004" y1="8.99998" x2="5.28004" y2="8.99998" stroke="#27292A" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="26.7201" y1="16.3601" x2="27.3601" y2="16.3601" stroke="#27292A" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="25.7997" y1="14.52" x2="27.3597" y2="14.52" stroke="#27292A" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="25.7997" y1="7.16001" x2="27.3597" y2="7.16001" stroke="#27292A" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="26.7201" y1="12.68" x2="27.3601" y2="12.68" stroke="#27292A" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="26.7201" y1="10.8401" x2="27.3601" y2="10.8401" stroke="#27292A" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="26.7201" y1="8.99998" x2="27.3601" y2="8.99998" stroke="#27292A" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="9.24014" y1="21.1441" x2="9.88014" y2="21.1441" stroke="#27292A" stroke-width="1.2" stroke-linecap="round"/>
+<line x1="13.809" y1="23.5898" x2="12.889" y2="26.3498" stroke="#27292A" stroke-width="1.2"/>
+<line y1="-0.6" x2="2.9093" y2="-0.6" transform="matrix(0.316228 0.948683 0.948683 -0.316228 18.7603 23.4)" stroke="#27292A" stroke-width="1.2"/>
+<path d="M19.3394 7.97974L20.1419 8.83636C20.293 8.99758 20.2847 9.25126 20.1235 9.4023L12.6491 16.4049L11.3157 16.4042L11.3161 14.9478L18.7734 7.9613C18.9347 7.81026 19.1883 7.81853 19.3394 7.97974Z" stroke="#27292A" stroke-width="1.2"/>
+<line x1="17.2147" y1="8.59967" x2="19.3847" y2="10.9159" stroke="#27292A" stroke-width="1.2"/>
+<line x1="12.0038" y1="13.4821" x2="14.1737" y2="15.7983" stroke="#27292A" stroke-width="1.2"/>
+</svg>
