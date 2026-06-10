@@ -7,8 +7,15 @@ const { optimize } = require('svgo');
 const ROOT = path.join(__dirname, '..');
 const ICONS_DIR = path.join(ROOT, 'icons');
 const DIST_DIR = path.join(ROOT, 'dist');
-const LIB_DIR = path.join(ROOT, 'lib', 'substrate_design_system');
+const PRIV_DIR = path.join(ROOT, 'priv');
+
 const SIZES = [16, 20, 24, 32, 48];
+
+function normalizeColors(svg) {
+  return svg
+    .replace(/\bfill="#[0-9a-fA-F]{3,8}"/g, 'fill="currentColor"')
+    .replace(/\bstroke="#[0-9a-fA-F]{3,8}"/g, 'stroke="currentColor"');
+}
 
 function extractSvg(raw, size) {
   const viewBox = (raw.match(/viewBox="([^"]+)"/) || [])[1] || `0 0 ${size} ${size}`;
@@ -22,14 +29,22 @@ function extractSvg(raw, size) {
 
 const icons = {};
 
+// Clean priv/icons so removed files don't linger
+const privIconsRoot = path.join(PRIV_DIR, 'icons');
+if (fs.existsSync(privIconsRoot)) fs.rmSync(privIconsRoot, { recursive: true });
+
 for (const size of SIZES) {
   const dir = path.join(ICONS_DIR, String(size));
   if (!fs.existsSync(dir)) continue;
+  const privSizeDir = path.join(privIconsRoot, String(size));
+  fs.mkdirSync(privSizeDir, { recursive: true });
   for (const file of fs.readdirSync(dir).filter(f => f.endsWith('.svg'))) {
     const name = path.basename(file, '.svg');
     const raw = fs.readFileSync(path.join(dir, file), 'utf8');
     const optimized = optimize(raw, { path: path.join(dir, file) }).data;
-    const { viewBox, inner } = extractSvg(optimized, size);
+    const normalized = normalizeColors(optimized);
+    fs.writeFileSync(path.join(privSizeDir, file), normalized);
+    const { viewBox, inner } = extractSvg(normalized, size);
     (icons[name] ??= {})[size] = { viewBox, inner };
   }
 }
@@ -50,11 +65,11 @@ for (const name of iconNames) {
 sprite += `</defs>\n</svg>\n`;
 fs.writeFileSync(path.join(DIST_DIR, 'sprite.svg'), sprite);
 
-// 2. Raw SVGs — clean first so renamed/deleted files don't linger
+// 2. Raw SVGs — copy from priv/ (already optimised + normalised) so dist/ is consistent with the sprite
 const iconsDistDir = path.join(DIST_DIR, 'icons');
 if (fs.existsSync(iconsDistDir)) fs.rmSync(iconsDistDir, { recursive: true });
 for (const size of SIZES) {
-  const src = path.join(ICONS_DIR, String(size));
+  const src = path.join(privIconsRoot, String(size));
   const dest = path.join(DIST_DIR, 'icons', String(size));
   if (!fs.existsSync(src)) continue;
   fs.mkdirSync(dest, { recursive: true });
@@ -69,54 +84,4 @@ fs.writeFileSync(path.join(DIST_DIR, 'index.d.ts'),
 fs.writeFileSync(path.join(DIST_DIR, 'index.js'),
   `export const iconNames = ${JSON.stringify(iconNames)};\nexport const iconSizes = [16, 20, 24, 32, 48];\n`);
 
-// 4. Phoenix HEEx component
-fs.mkdirSync(LIB_DIR, { recursive: true });
-const entries = [];
-for (const name of iconNames) {
-  for (const size of SIZES) {
-    const icon = icons[name]?.[size];
-    if (!icon) continue;
-    const safeContent = icon.inner.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
-    entries.push(`    {"${name}", ${size}} => {"${icon.viewBox}", "${safeContent}"}`);
-  }
-}
-
-const exFile = `# THIS FILE IS GENERATED — do not edit by hand
-# Run: node scripts/build.js
-
-defmodule SubstrateDesignSystem.Icons do
-  use Phoenix.Component
-
-  @icons %{
-${entries.join(',\n')}
-  }
-
-  attr :name, :string, required: true
-  attr :size, :integer, default: 24
-  attr :class, :string, default: nil
-  attr :rest, :global
-
-  def icon(assigns) do
-    {viewbox, svg_content} = Map.fetch!(@icons, {assigns.name, assigns.size})
-
-    assigns =
-      assigns
-      |> assign(:viewbox, viewbox)
-      |> assign(:svg_content, svg_content)
-
-    ~H"""
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={@size}
-      height={@size}
-      viewBox={@viewbox}
-      class={@class}
-      {@rest}
-    ><%= {:safe, @svg_content} %></svg>
-    """
-  end
-end
-`;
-fs.writeFileSync(path.join(LIB_DIR, 'icons.ex'), exFile);
-
-console.log(`Done. ${iconNames.length} icons → dist/ and lib/`);
+console.log(`Done. ${iconNames.length} icons → dist/ and priv/icons/`);
