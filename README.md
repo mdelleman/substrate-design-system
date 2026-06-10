@@ -211,28 +211,30 @@ All icons are 24px unless the name includes a size suffix (`-32x32`, `-48x48`).
 
 ```
 archive              archive_cabinet      archive_invoice      archive_quote
-arrow_path           arrow_top_right_on_square               arrow_uturn_left     bell
-bell_slash           building_office_2    chart_bar            check
-checkmark_filled     checkmark_outline    close_lg             close_sm
-copy_document        copy_item            copy_link            currency_dollar
-dashboard            delete               design_24x24         design_32x32
-design_48x48         down                 download             due_soon
-edit                 edit_pen             exclamation_circle   file_ai
-file_eps             file_gen             file_jpg             file_pdf
-file_png             file_svg             file_xls             filter
-has_comments         history_order        invoice              invoice_alt
+arrow_path           arrow_top_right_on_square               arrow_uturn_left     bars_3
+bell                 bell_slash           building_office_2    calendar_days
+chart_bar            check                checkmark_filled     checkmark_outline
+close_lg             close_sm             computer_desktop     copy_document
+copy_item            copy_link            currency_dollar      dashboard
+delete               design_24x24         design_32x32         design_48x48
+down                 download             due_soon             edit
+edit_pen             exclamation_circle   file_ai              file_eps
+file_gen             file_jpg             file_pdf             file_png
+file_svg             file_xls             filter               has_comments
+history_order        home                 invoice              invoice_alt
 kanban               left                 left_arrow           left_arrow_1
 link                 list                 lock                 lock_calc
-menu_h               menu_v               new                  options
-palette              pause_outline        pending              print
-print_invoice        print_quote          print_work_order     production
+menu_h               menu_v               moon                 new
+options              palette              pause_outline        pending
+photo                print                print_invoice        print_quote
+print_work_order     priority             priority_solid       production
 production_24x24     production_32x32     production_48x48     production_complete
 quote_24x24          quote_32x32          quote_48x48          quote_sent
 right                right_arrow          right_arrow_1        rush
 rush_1               search               send_production      settings
-shield_check         suppliers            trash                unlock_calc
-up                   update_invoice       upload               user
-view                 work_order           wrench_screwdriver
+shield_check         sun                  suppliers            trash
+unlock_calc          up                   update_invoice       upload
+user                 view                 work_order           wrench_screwdriver
 ```
 
 For Vite/sprite usage, replace underscores with dashes and append the size: `arrow_path` → `#arrow-path-24`.
