@@ -231,10 +231,11 @@ print_work_order     priority             priority_solid       production
 production_24x24     production_32x32     production_48x48     production_complete
 quote_24x24          quote_32x32          quote_48x48          quote_sent
 right                right_arrow          right_arrow_1        rush
-rush_1               search               send_production      settings
-shield_check         sun                  suppliers            trash
-unlock_calc          up                   update_invoice       upload
-user                 view                 work_order           wrench_screwdriver
+rush_1               rush_solid           search               send_production
+settings             shield_check         sun                  suppliers
+trash                unlock_calc          up                   update_invoice
+upload               user                 view                 work_order
+wrench_screwdriver
 ```
 
 For Vite/sprite usage, replace underscores with dashes and append the size: `arrow_path` → `#arrow-path-24`.
