@@ -23,7 +23,7 @@ In your app's `mix.exs`:
 ```elixir
 defp deps do
   [
-    {:substrate_design_system, git: "https://github.com/YOUR_ORG/substrate-design-system"},
+    {:substrate_design_system, git: "https://github.com/mdelleman/substrate-design-system"},
     # ...
   ]
 end
@@ -94,7 +94,7 @@ In your app's `package.json`:
 ```json
 {
   "dependencies": {
-    "substrate-design-system": "github:YOUR_ORG/substrate-design-system"
+    "substrate-design-system": "github:mdelleman/substrate-design-system"
   }
 }
 ```
@@ -175,7 +175,7 @@ npm update substrate-design-system
 
 ## Updating icons (contributors)
 
-1. Open the [Substrate Figma file](https://www.figma.com/design/FE4Dz4MjP5wSKOh4TyQMWO/Substrate?node-id=216-1220) and export updated or new icons as SVG
+1. Export updated or new icons as SVG from Figma
 2. Drop the `.svg` files into the matching size folder — `icons/24/`, `icons/32/`, `icons/48/`, etc. Filenames must be kebab-case (e.g. `my-icon.svg`)
 3. Run the build script:
    ```sh
@@ -269,3 +269,11 @@ package.json        ← npm package config
 ```
 
 `priv/` and `dist/` are committed so consuming apps get pre-built outputs without needing to run the build script themselves.
+
+---
+
+## License
+
+MIT — © 2026 Substrate.
+
+Some icons are derived from [Heroicons](https://heroicons.com) — MIT, © Tailwind Labs, Inc.

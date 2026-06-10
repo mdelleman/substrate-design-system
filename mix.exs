@@ -23,7 +23,7 @@ defmodule SubstrateDesignSystem.MixProject do
   defp package do
     [
       licenses: ["MIT"],
-      links: %{},
+      links: %{"GitHub" => "https://github.com/mdelleman/substrate-design-system"},
       files: ~w(lib priv mix.exs README.md)
     ]
   end
